@@ -27,7 +27,7 @@ export const styles = StyleSheet.create({
         top: -30,
         alignItems: "center",
         justifyContent: "center",
-      },
+    },
     input: {
         backgroundColor: '#F2F2F2',
         flex: 1,
@@ -52,4 +52,37 @@ export const styles = StyleSheet.create({
     textButton: {
         margin: "auto"
     },
+    textBox: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+        marginBottom: 20,
+    },
+    list: {
+        justifyContent: "center",
+        borderTopColor: "#D9D9D9",
+        borderStyle: "solid",
+        borderTopWidth: 1,
+    },
+    emptyBox: {
+        flex: 1,
+        alignItems: "center",
+        marginTop: 48,
+    },
+    boldText: {
+        color: "#808080",
+        textAlign: "center",
+        fontSize: 14,
+        fontWeight: "bold",
+        marginTop: 16,
+    },
+    normalText: {
+        color: "#808080",
+        fontSize: 14,
+        textAlign: "center",
+    },
+    image: {
+        width: 56,
+        right: 56,
+        marginTop: 48,
+    }
 })

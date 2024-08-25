@@ -13,8 +13,7 @@ type Props = {
 export function Product({ name, done, onRemove, onRadioPress }: Props) {
   return (
     <View
-      style={{ ...styles.container, borderColor: done ? "#808080" : "#D9D9D9" }}
-    >
+      style={{ ...styles.container, borderColor: done ? "#808080" : "#d9d9d9" }}>
       <TouchableOpacity style={styles.radioButton} onPress={onRadioPress}>
         {done ? (
           <MaterialIcons name="check-circle" size={24} color="#7A4A9E" />

@@ -1,8 +1,10 @@
-import { Alert, TouchableOpacity, Text, TextInput, View } from "react-native";
+import { FlatList, Image, Alert, TouchableOpacity, Text, TextInput, View } from "react-native";
 import { styles } from "./styles";
 import { MaterialIcons } from "@expo/vector-icons";
+import shopping from "../../assets/shopping_list.png";
 import { useState } from "react";
 import { Product } from "../../components/Product";
+import { CountProducts } from "../../components/CountProducts/";
 
 type Product = {
     name: string;
@@ -63,7 +65,9 @@ type Product = {
     return (
         <View style={styles.container}>
             <View style={styles.purpleBox}>
-                <Text style={styles.title}>Lista de Compras</Text>
+                <Text style={styles.title}>
+                  Lista de Compras
+                </Text>
             </View>
 
             <View style={styles.form}>
@@ -71,7 +75,9 @@ type Product = {
                     <TextInput style={styles.input}
                         placeholder="Adicione um novo produto"
                         placeholderTextColor='#808080'
-                        keyboardType='default'>
+                        keyboardType='default'
+                        onChangeText={setProductName}
+                        value={productName}>
                     </TextInput>
 
                     <TouchableOpacity style={styles.button} onPress={handleProductAdd}>
@@ -83,8 +89,50 @@ type Product = {
                         />
                     </TouchableOpacity>
                 </View>
+
+                <View style={styles.textBox}>
+                  <CountProducts
+                  name={"Produtos"}
+                  color="#31C667"
+                  numbers={products.length}
+                  />
+
+                  <CountProducts
+                  name={"Finalizados"}
+                  color="#7A4A9E"
+                  numbers={productDone}
+                  />
+                </View>
+
+                <View>
+                  <FlatList
+                  data={products}
+                  keyExtractor={(item) => item.name}
+                  renderItem={({ item }) => (
+                  <Product
+                  name={item.name}
+                  done={item.done}
+                  onRemove={() => handleProductRemove(item.name)}
+                  onRadioPress={() => handleProductDone(item.name)}
+                  />
+                  )}
+
+              showsVerticalScrollIndicator={false}
+              contentContainerStyle={products.length <= 0 && styles.list}
+              ListEmptyComponent={() => (
+                <View style={styles.emptyBox}>
+                  <Image source={shopping}></Image>
+                    <Text style={styles.boldText}>
+                      Você ainda não tem produtos na lista de compra
+                    </Text>
+                    <Text style={styles.normalText}>
+                      Adicione produtos e organize sua lista de compras
+                    </Text>
+                  </View>
+                  )}/>
+                </View> 
             </View>
 
         </View>
-    )
+  );
 }
